@@ -1,2 +1,2 @@
 ﻿gesture_type,phone_status,sample_count,top_predicted_tool,top_predicted_ratio_pct,prediction_distribution
-SWIPE,,66,机械臂,72.73,机械臂:48; 未知:18
+SWIPE,,50,自动化脚本-屏幕录制,100.0,自动化脚本-屏幕录制:50

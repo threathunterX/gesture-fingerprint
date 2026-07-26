@@ -1,2 +1,2 @@
 ﻿group_by_fields,group_key,gesture_type,sample_count,min_required_samples,sample_status,final_predicted_tool,group_confidence_level,top_single_tool,top_single_count,top_single_ratio_pct,top_single_avg_confidence,prediction_distribution,conclusion
-gesture_type,gesture_type=SWIPE,SWIPE,66,30,可判定,机械臂,中,机械臂,48,72.73,0.99,机械臂:48; 未知:18,最高类别为 机械臂，占比 72.73%，组内一致性满足最低样本量要求。
+gesture_type,gesture_type=SWIPE,SWIPE,50,30,可判定,自动化脚本-屏幕录制,高,自动化脚本-屏幕录制,50,100.0,0.99,自动化脚本-屏幕录制:50,最高类别为 自动化脚本-屏幕录制，占比 100.00%，组内一致性满足最低样本量要求。
