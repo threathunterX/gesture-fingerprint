@@ -7,19 +7,29 @@ Given touch telemetry from a mobile app, decide whether a tap or swipe came from
 
 Not just bot detection — it tells you **which kind** of machine.
 
-![Human vs. automation script: 250 repetitions of the same swipe, overlaid](docs/images/00-hero-human-vs-script.png)
+![Swipe-trajectory overlays: human, robotic arm, mouse clicker, screen-recording script](docs/images/en/traj-shape-aligned.png)
 
-> The same gesture, repeated **250 times**, with all trajectories overlaid.
-> Left is a human, right is an automation script — **no algorithm needed, the
-> difference is visible to the naked eye.**
+> Every swipe from a blind-test capture, overlaid, **translated to a common start
+> point** so that only the *shape* of the stroke remains. **No algorithm needed —
+> the difference is visible to the naked eye:**
+>
+> - **Human** — a tight sheaf of arcs all bending the same way: a finger pivoting about a joint
+> - **Robotic arm** — a starburst in every direction, each ray straight-ish with mechanical kinks
+> - **Mouse clicker** — a clean fan of dead-straight rays
+> - **Screen-recording script** — 50 swipes collapse to one polyline; it is replaying a single recording
 >
 > What this project does is break that difference into 9 quantifiable dimensions,
-> so a program can decide not only "not human", but "which machine".
+> so a program can decide not only "not human", but **which machine**.
+>
+> <sub>Reproduce this figure from the data in this repo:
+> [`.github/gen_traj_en.py`](./.github/gen_traj_en.py)</sub>
 
-> **Note on language.** The charts are labelled in Chinese, and the detailed
-> experiment write-ups under [`docs/`](./docs) are Chinese-only for now.
-> This page covers everything you need to run and evaluate the tool.
-> Translations are welcome — see [Contributing](#contributing).
+> **Note on language.** Full English write-ups live in [`docs/en/`](./docs/en) —
+> experiment method, all nine dimensions, the decision rules, and validation.
+> The statistical charts came out of the original analysis and carry Chinese
+> labels; every figure in the English docs has a caption stating exactly what to
+> look at, with the numbers repeated in English tables. The trajectory figures
+> have been re-rendered in English.
 
 ---
 
@@ -82,9 +92,12 @@ The underlying feature values:
 
 ![Trajectory overlays for 8 tool classes](docs/images/00-gallery-all-tools.png)
 
-Left to right, top to bottom: human, robotic arm, mouse clicker, hand-written
-script, screen-recording playback, auto-swipe/liker, screen-swiper A,
-screen-swiper B. All 250 swipes each —
+<sub>Chinese-labelled figure from the original 250-swipe controlled experiment.
+Panel titles, left to right and top to bottom: human, robotic arm, mouse clicker,
+hand-written script, screen-recording playback, auto-swipe/liker, screen-swiper A,
+screen-swiper B. Axes are X and Y screen coordinates in px.</sub>
+
+All 250 swipes each —
 
 - **Human** fans out; every start and end point differs, with natural curvature
 - **Robotic arm** comes closest to human, but is visibly tighter and more structured (it is the hardest class to separate)
@@ -146,7 +159,7 @@ the oddly specific constant 1.4142.
 **A machine's biggest tell isn't that it does the job badly — it's that it does
 the job too perfectly.**
 
-Charts for the other 8 dimensions: [`docs/02`](./docs/02-九维度分析.md) (Chinese).
+Charts for the other 8 dimensions: [`docs/en/02`](./docs/en/02-nine-dimensions.md).
 
 ---
 
@@ -200,7 +213,7 @@ As for `压力: avg=0.500` (*pressure*) in the same frame — that was the patte
 saw in round one. Round two, with a different batch, measured 0.94 instead.
 **That inconsistency went on to become our single largest source of
 misclassification**, and it is the most concrete argument for per-device-model
-calibration. See [`docs/04`](./docs/04-验证与局限.md).
+calibration. See [`docs/en/04`](./docs/en/04-validation-and-limits.md).
 
 > **No collector?** `人工测试数据/` in this repo holds the 5 raw blind-test sets.
 > Clone it and you can reproduce the results below without installing anything.
@@ -247,7 +260,7 @@ machine was never called a human. Every error stayed inside one category or
 degraded to "unknown". That is currently the most trustworthy property of the method.
 
 We publish the weak rows too; the failure analysis is in
-[`docs/04`](./docs/04-验证与局限.md). Bring your own data and open an issue or PR.
+[`docs/en/04`](./docs/en/04-validation-and-limits.md). Bring your own data and open an issue or PR.
 
 ---
 
@@ -317,7 +330,7 @@ src/gesture_behavior_classifier/
 ├── cli.py                   # command-line entry point
 └── config/
     └── default_rules.json   # all thresholds
-docs/                        # full experiment data and per-dimension analysis (Chinese)
+docs/                        # full experiment data and per-dimension analysis (docs/en for English)
 example_outputs/             # a complete real run
 人工测试数据/                 # 5 blind-test sets, reproduce the table above
 tests/
@@ -370,7 +383,7 @@ no access to other apps' data.**
 - Obtain it only from this repository's Releases page, never from a mirror.
 
 To instrument your own app instead, follow the field spec in
-[`docs/01`](./docs/01-实验方法.md) — the APK is not required.
+[`docs/en/01`](./docs/en/01-experiment-method.md) — the APK is not required.
 
 ---
 
