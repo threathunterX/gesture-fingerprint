@@ -259,7 +259,7 @@ tests/
 
 ## 采集 App 说明
 
-Releases 页面的 `测试appV2.apk` 是我们做实验时用的 Android 采集端。
+Releases 页面的 `gesture-collector-v2.apk` 是我们做实验时用的 Android 采集端。
 
 ```
 SHA-256  f3e6a1940a16641a431b0654bf2cf36a02db31babdf752fa07696d122dbf91f2
