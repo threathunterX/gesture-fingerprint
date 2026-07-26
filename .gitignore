@@ -1,0 +1,25 @@
+# macOS / Android 采集端产生的垃圾文件
+.DS_Store
+.trashed-*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# 运行输出
+out/
+outputs/
+*_outputs/
+!example_outputs/
+path/
+
+# 大体积附件（走 GitHub Releases，不进 git）
+*.apk
+
+# pytest
+.pytest_cache/
