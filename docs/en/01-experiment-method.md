@@ -29,11 +29,27 @@
 | Hand-written script | Injects synthetic gesture events through the Android accessibility service |
 | Screen-recording playback | Records a real human session and replays it, also via accessibility injection |
 
-**Why does the black market pay for hardware when scripts are free?**
-Because a software-injected tap is visibly *not a real touch* at the system level —
-in this project it shows up as a contact area of exactly 0, or a placeholder
-constant of 1. Hardware presses produce a genuine capacitive touch signal. That
-difference is the first and most reliable split in the entire method.
+**Why is hardware harder to detect than software?**
+
+Software injects through the Android accessibility service, and an app can check
+whether accessibility is enabled, whether the device is rooted, and whether it is
+running in a virtual machine. **What hardware evades is that class of
+*environment* check.** Four of the eight devices above (HID Bluetooth, OTG, mouse
+clicker, auto-swipe/liker) speak the HID protocol, so to the system they are simply
+an external mouse — a natively supported device type with nothing to flag.
+
+Worth stating plainly: **"producing a real touch" is not the purchasing motive.**
+Those four HID devices report a contact area of exactly 0 — no real touch at all —
+and they are the cheapest and most widespread of the lot. The genuine contact area
+that a physical tip produces is a *by-product* of how capacitive clickers and
+robotic arms happen to get the job done.
+
+And it is precisely that by-product which forms the first split in the detection
+method: **environment checks and behavioural checks are two different things.** An
+HID device gets past "has this phone been modified?" but not past "did anything
+actually touch the glass?" — a contact area of exactly 0, or a placeholder constant
+of 1, is what the system inevitably reports for a non-touch input source, and it
+cannot be faked.
 
 ### Engine classes vs. test devices
 
